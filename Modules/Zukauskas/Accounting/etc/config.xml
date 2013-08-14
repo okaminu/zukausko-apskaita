@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<config>
+    <modules>
+        <Zukauskas_Accounting>
+            <version>0.1.0</version>
+        </Zukauskas_Accounting>
+    </modules>
+    <frontend>
+        <routers>
+            <zukauskas>    <!-- I make this match my front name but I'm not sure it matters -->
+                <use>standard</use>    <!-- Use standard routing as opposed to admin.  IE: frontend vs admin -->
+                <args>
+                    <module>Zukauskas_Accounting</module>    <!-- The module to search for controllers -->
+                    <frontName>zukauskas</frontName>    <!-- The first descriminator in the path.  "spinonesolutions" in http://localhost/spinonesolutions/ -->
+                </args>
+            </zukauskas>
+        </routers>
+    </frontend>
+    <global>
+        <models>
+            <zukauskas_accounting>    <!-- This is used when istanting your Model EG: Mage::getModel("spinonesolutions_helloworld/hellworld") -->
+                <class>Zukauskas_Accounting_Model</class>    <!-- That class to use when isntanting objects of type above. -->
+            </zukauskas_accounting>
+        </models>
+        <blocks>
+            <adminhtml>
+                <rewrite>
+                    <customer_edit_tab_account>Zukauskas_Accounting_Block_Customer_Edit_Tab_Account</customer_edit_tab_account>
+                </rewrite>
+            </adminhtml>
+        </blocks>
+    </global>
+</config>
