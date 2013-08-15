@@ -26,8 +26,10 @@
             <adminhtml>
                 <rewrite>
                     <customer_edit_tab_account>Zukauskas_Accounting_Block_Customer_Edit_Tab_Account</customer_edit_tab_account>
+                    <catalog_product_grid>Zukauskas_Accounting_Block_Catalog_Product_Grid</catalog_product_grid>
                 </rewrite>
             </adminhtml>
+
         </blocks>
     </global>
 </config>
