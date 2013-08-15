@@ -27,6 +27,7 @@
                 <rewrite>
                     <customer_edit_tab_account>Zukauskas_Accounting_Block_Customer_Edit_Tab_Account</customer_edit_tab_account>
                     <catalog_product_grid>Zukauskas_Accounting_Block_Catalog_Product_Grid</catalog_product_grid>
+                    <sales_order_create_search_grid>Zukauskas_Accounting_Block_Sales_Order_Create_Search_Grid</sales_order_create_search_grid>
                 </rewrite>
             </adminhtml>
 
