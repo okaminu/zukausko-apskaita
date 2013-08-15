@@ -21,6 +21,11 @@
             <zukauskas_accounting>    <!-- This is used when istanting your Model EG: Mage::getModel("spinonesolutions_helloworld/hellworld") -->
                 <class>Zukauskas_Accounting_Model</class>    <!-- That class to use when isntanting objects of type above. -->
             </zukauskas_accounting>
+            <adminhtml>
+                <rewrite>
+                    <sales_order_create>Zukauskas_Accounting_Model_Sales_Order_Create</sales_order_create>
+                </rewrite>
+            </adminhtml>
         </models>
         <blocks>
             <adminhtml>

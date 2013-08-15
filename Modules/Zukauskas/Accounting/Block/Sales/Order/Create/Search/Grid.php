@@ -175,7 +175,7 @@ class Zukauskas_Accounting_Block_Sales_Order_Create_Search_Grid extends Mage_Adm
             ));
         $this->addColumn('cost1',
             array(
-                'header'=> "Pirkimo kaina (su PVM)",
+                'header'=> "Pirkimo kaina (be PVM)",
                 'type'  => 'price',
                 'currency_code' => $store->getBaseCurrency()->getCode(),
                 'index' => 'cost1'
