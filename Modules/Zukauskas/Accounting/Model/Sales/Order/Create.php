@@ -760,15 +760,20 @@ class Zukauskas_Accounting_Model_Sales_Order_Create extends Varien_Object implem
 
         //---custom----
 
-        $customer= $this->getSession()->getCustomer();
-        $attributesCust = $customer->getAttributes();
-        $attrCustVal = $attributesCust["person_or_company"]->getFrontend()->getValue($customer);
+        $cat = $product->_getData('attribute_set_id');
 
-        $attributesProd = $product->getAttributes();
-        $attributesProdVal = $attributesProd['price_tax']->getFrontend()->getValue($product);
+        if($cat == "9"){
+            $customer= $this->getSession()->getCustomer();
 
-        if($attrCustVal == 'Asmuo'){
-            $product->setPrice($attributesProdVal);
+            $attributesCust = $customer->getAttributes();
+            $attrCustVal = $attributesCust["person_or_company"]->getFrontend()->getValue($customer);
+
+            $attributesProd = $product->getAttributes();
+            $attributesProdVal = $attributesProd['price_tax']->getFrontend()->getValue($product);
+
+            if($attrCustVal == 'Asmuo'){
+                $product->setPrice($attributesProdVal);
+            }
         }
 
         //--------------
