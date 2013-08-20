@@ -35,7 +35,21 @@
                     <sales_order_create_search_grid>Zukauskas_Accounting_Block_Sales_Order_Create_Search_Grid</sales_order_create_search_grid>
                 </rewrite>
             </adminhtml>
-
         </blocks>
     </global>
+    <stores>
+        <admin>
+            <!-- override default admindesign package and theme -->
+            <design>
+                <package>
+                    <name>default</name>
+                </package>
+                <theme>
+                    <!-- this is the theme name -->
+                    <default>zukauskas</default>
+                </theme>
+            </design>
+        </admin>
+    </stores>
 </config>
+

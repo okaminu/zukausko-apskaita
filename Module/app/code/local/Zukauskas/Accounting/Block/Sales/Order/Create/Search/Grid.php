@@ -189,7 +189,7 @@ class Zukauskas_Accounting_Block_Sales_Order_Create_Search_Grid extends Mage_Adm
                 'index' => 'cost1_tax'
             ));
         $this->addColumn('price', array(
-            'header'    => Mage::helper('sales')->__('Price'),
+            'header'    => "Lentynos kaina (be PVM)",
             'column_css_class' => 'price',
             'align'     => 'center',
             'type'      => 'currency',

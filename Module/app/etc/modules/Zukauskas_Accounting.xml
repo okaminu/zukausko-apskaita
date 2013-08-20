@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+ <modules>
+   <Zukauskas_Accounting>
+     <active>true</active>
+     <codePool>local</codePool>
+   </Zukauskas_Accounting>
+ </modules>
+</config>
