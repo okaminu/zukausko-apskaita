@@ -857,11 +857,28 @@ class Zukauskas_Accounting_Model_Sales_Order_Create extends Varien_Object implem
                                 $item->setIsQtyDecimal(1);
                             }
                         }
+
+
                         $itemQty    = $itemQty > 0 ? $itemQty : 1;
                         if (isset($info['custom_price'])) {
                             $itemPrice  = $this->_parseCustomPrice($info['custom_price']);
                         } else {
-                            $itemPrice = null;
+                            $product = Mage::getModel('catalog/product')->load($item->getProduct()->getId());
+                            $cat = $product->_getData('attribute_set_id');
+
+                            if($cat == "9"){
+                                $customer= $this->getSession()->getCustomer();
+
+                                $attributesCust = $customer->getAttributes();
+                                $attrCustVal = $attributesCust["person_or_company"]->getFrontend()->getValue($customer);
+
+                                $attributesProdVal = $product->_getData('price_tax');
+
+                                if($attrCustVal == 'Asmuo'){
+                                    $itemPrice = $attributesProdVal;
+                                }
+                            }
+                            //$itemPrice = null;
                         }
                         $noDiscount = !isset($info['use_discount']);
 
