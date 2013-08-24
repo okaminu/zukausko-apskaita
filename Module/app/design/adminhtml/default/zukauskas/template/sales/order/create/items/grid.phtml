@@ -46,7 +46,8 @@
                     <th class="no-link"><?php echo $this->helper('sales')->__('Product') ?></th>
                     <th class="no-link"><?php echo $this->helper('sales')->__('Price') ?></th>
                     <th class="no-link"><?php echo $this->helper('sales')->__('Qty') ?></th>
-                    <th class="no-link">Pelnas</th>
+                    <!---MODULE---->
+                    <th class="no-link">Procentas</th>
                     <th class="no-link"><?php echo $this->helper('sales')->__('Subtotal') ?></th>
                     <th class="no-link"><?php echo $this->helper('sales')->__('Discount') ?></th>
                     <th class="no-link"><?php echo $this->helper('sales')->__('Row Subtotal') ?></th>
@@ -83,7 +84,8 @@
                     <th class="no-link" colspan="2"><?php echo $this->helper('sales')->__('Product') ?></th>
                     <th class="no-link"><?php echo $this->helper('sales')->__('Price') ?></th>
                     <th class="no-link"><?php echo $this->helper('sales')->__('Qty') ?></th>
-                    <th class="no-link">Pelnas</th>
+                    <!---MODULE---->
+                    <th class="no-link">Procentas</th>
                     <th class="no-link"><?php echo $this->helper('sales')->__('Subtotal') ?></th>
                     <th class="no-link"><?php echo $this->helper('sales')->__('Discount') ?></th>
                     <th class="no-link"><?php echo $this->helper('sales')->__('Row Subtotal') ?></th>
@@ -224,7 +226,13 @@
                             <input id="item_custom_price_<?php echo $_item->getId() ?>" name="item[<?php echo $_item->getId() ?>][custom_price]" value="<?php echo sprintf("%.2f", $this->getOriginalEditablePrice($_item))?>"<?php if (!$_isCustomPrice): ?> style="display:none" disabled="disabled"<?php endif; ?> class="input-text item-price"/>
                         </td>
                         <td><input name="item[<?php echo $_item->getId() ?>][qty]" class="input-text item-qty" value="<?php echo $_item->getQty()*1 ?>" maxlength="12" /></td>
-                        <td><input name="item[<?php echo $_item->getId() ?>][percent]" class="input-text item-percent" value="<?php echo $_item->getQty()*1 ?>" maxlength="12" /></td>
+                        <!---MODULE---->
+
+                        <td>
+                            <?php if ($_item->getData2('attribute_set_id') == "10"): ?>
+                            <input name="item[<?php echo $_item->getId() ?>][percent]" class="input-text item-percent" value="<?php echo $_item->getPercent() ?>" maxlength="12" />
+                            <?php endif; ?>
+                        </td>
                         <td class="price">
 
 

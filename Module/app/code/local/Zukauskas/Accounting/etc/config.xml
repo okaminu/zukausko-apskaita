@@ -26,6 +26,12 @@
                     <sales_order_create>Zukauskas_Accounting_Model_Sales_Order_Create</sales_order_create>
                 </rewrite>
             </adminhtml>
+            <sales>
+                <rewrite>
+                    <quote>Zukauskas_Accounting_Model_Sales_Quote</quote>
+                    <quote_item>Zukauskas_Accounting_Model_Sales_Quote_Item</quote_item>
+                </rewrite>
+            </sales>
         </models>
         <blocks>
             <adminhtml>
