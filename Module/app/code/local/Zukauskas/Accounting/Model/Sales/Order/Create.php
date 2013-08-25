@@ -850,10 +850,8 @@ class Zukauskas_Accounting_Model_Sales_Order_Create extends Varien_Object implem
                     }
 
                     if (!empty($info['percent'])) {
-                        $item->addOption(Mage::getModel('sales/quote_item_option')->setData(array(
-                            'code' => 'percent',
-                            'value' => $info['percent']
-                        )));
+                        $item->setHiddenTaxAmount(floatval($info['percent']));
+
                     }
 
                     if ($item) {

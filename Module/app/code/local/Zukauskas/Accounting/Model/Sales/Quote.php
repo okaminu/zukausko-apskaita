@@ -873,10 +873,13 @@ class Zukauskas_Accounting_Model_Sales_Quote extends Mage_Core_Model_Abstract
         $cat = $product->_getData('attribute_set_id');
 
         if($cat == "10"){
-            $item->addOption(Mage::getModel('sales/quote_item_option')->setData(array(
-                'code' => 'percent',
-                'value' => '30'
-            )));
+//            $item->addOption(Mage::getModel('sales/quote_item_option')->setData(array(
+//                'code' => 'percent',
+//                'value' => '30'
+//            )));
+
+//            $item->addData(array('percent'=> '30'));
+            $item->setHiddenTaxAmount(30.0);
         }
         if ($item->isNominal() && $this->hasItems() || $this->hasNominalItems()) {
             Mage::throwException(
