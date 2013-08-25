@@ -849,6 +849,13 @@ class Zukauskas_Accounting_Model_Sales_Order_Create extends Varien_Object implem
                         $itemQty    = (float)$info['qty'];
                     }
 
+                    if (!empty($info['percent'])) {
+                        $item->addOption(Mage::getModel('sales/quote_item_option')->setData(array(
+                            'code' => 'percent',
+                            'value' => $info['percent']
+                        )));
+                    }
+
                     if ($item) {
                         if ($item->getProduct()->getStockItem()) {
                             if (!$item->getProduct()->getStockItem()->getIsQtyDecimal()) {

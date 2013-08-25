@@ -606,6 +606,13 @@ class Zukauskas_Accounting_Model_Sales_Quote_Item extends Mage_Sales_Model_Quote
         $val = $this->_optionsByCode['percent']->_data['value'];
         return $val;
     }
+
+    public function setPercent($val)
+    {//MOVE_TO_MODULE
+        $this->_optionsByCode['percent']->_data['value'] = $val;
+    }
+
+
     /**
      * Get all item options as array with codes in array key
      *

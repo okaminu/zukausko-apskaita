@@ -735,10 +735,10 @@ class Zukauskas_Accounting_Model_Sales_Quote extends Mage_Core_Model_Abstract
         $items = array();
         foreach ($this->getItemsCollection() as $item) {
             //MOVE_TO_MODULE
-            $item->addOption(Mage::getModel('sales/quote_item_option')->setData(array(
-                'code' => 'percent',
-                'value' => '30'
-            )));
+//            $item->addOption(Mage::getModel('sales/quote_item_option')->setData(array(
+//                'code' => 'percent',
+//                'value' => '30'
+//            )));
             if (!$item->isDeleted() && !$item->getParentItemId()) {
                 $items[] =  $item;
             }
@@ -868,6 +868,16 @@ class Zukauskas_Accounting_Model_Sales_Quote extends Mage_Core_Model_Abstract
          * It makes logically impossible to make the process of the purchase failsafe.
          * Proper solution is to submit items one by one with customer confirmation each time.
          */
+
+        $product = Mage::getModel('catalog/product')->load($item->getProduct()->getId());
+        $cat = $product->_getData('attribute_set_id');
+
+        if($cat == "10"){
+            $item->addOption(Mage::getModel('sales/quote_item_option')->setData(array(
+                'code' => 'percent',
+                'value' => '30'
+            )));
+        }
         if ($item->isNominal() && $this->hasItems() || $this->hasNominalItems()) {
             Mage::throwException(
                 Mage::helper('sales')->__('Nominal item can be purchased standalone only. To proceed please remove other items from the quote.')
