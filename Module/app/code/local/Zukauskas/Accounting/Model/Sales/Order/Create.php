@@ -853,7 +853,11 @@ class Zukauskas_Accounting_Model_Sales_Order_Create extends Varien_Object implem
                         $item->setHiddenTaxAmount(floatval($info['percent']));
 
                     }
+//                    $this->getQuote()->setP
 
+                    if($this->getQuote()->getData('pelnas')== NULL){
+                        $this->getQuote()->setData('pelnas', 0);
+                    }
                     if ($item) {
                         if ($item->getProduct()->getStockItem()) {
                             if (!$item->getProduct()->getStockItem()->getIsQtyDecimal()) {
@@ -865,10 +869,23 @@ class Zukauskas_Accounting_Model_Sales_Order_Create extends Varien_Object implem
 
 
                         $itemQty    = $itemQty > 0 ? $itemQty : 1;
+                        $product = Mage::getModel('catalog/product')->load($item->getProduct()->getId());
+                        $cat = $product->_getData('attribute_set_id');
                         if (isset($info['custom_price'])) {
                             $itemPrice  = $this->_parseCustomPrice($info['custom_price']);
+                            if($cat == "9"){
+                            $attributesProdCostCost = $product->_getData('cost1');
+                                $profit = $itemPrice - $attributesProdCostCost;
+                            }elseif($cat == "10"){
+                                $attributesProdCostCost = $info['custom_price'];
+                                $workerPayPrc = $info['custom_price'] * $item->getHiddenTaxAmount();
+                                $workerPayPrc = $workerPayPrc / 100;
+                                $profit = $attributesProdCostCost - $workerPayPrc;
+                            }
+
+
                         } else {
-                            $product = Mage::getModel('catalog/product')->load($item->getProduct()->getId());
+
                             $cat = $product->_getData('attribute_set_id');
 
                             if($cat == "9"){
@@ -878,13 +895,22 @@ class Zukauskas_Accounting_Model_Sales_Order_Create extends Varien_Object implem
                                 $attrCustVal = $attributesCust["person_or_company"]->getFrontend()->getValue($customer);
 
                                 $attributesProdVal = $product->_getData('price_tax');
+                                $attributesProdPriceCost = $product->_getData('price');
+                                $attributesProdCostCost = $product->_getData('cost1');
 
                                 if($attrCustVal == 'Asmuo'){
                                     $itemPrice = $attributesProdVal;
+                                }else{
+                                $itemPrice = $attributesProdPriceCost;
                                 }
                             }
-                            //$itemPrice = null;
+                            $profit = $itemPrice - $attributesProdCostCost;
+
+
                         }
+                        $profit = $profit * $itemQty;
+                        $this->getQuote()->setData('pelnas', $this->getQuote()->getData('pelnas') + $profit);
+                        //$itemPrice = null;
                         $noDiscount = !isset($info['use_discount']);
 
                         if (empty($info['action']) || !empty($info['configured'])) {

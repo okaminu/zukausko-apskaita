@@ -230,7 +230,7 @@
 
                         <td>
                             <?php if ($_item->getData2('attribute_set_id') == "10"): ?>
-                            <input name="item[<?php echo $_item->getId() ?>][percent]" class="input-text item-percent" value="<?php echo $_item->getPercent() ?>" maxlength="12" />
+                            <input name="item[<?php echo $_item->getId() ?>][percent]" class="input-text item-percent" value="<?php echo round($_item->getHiddenTaxAmount(), 0) ?>" maxlength="12" />
                             <?php endif; ?>
                         </td>
                         <td class="price">
